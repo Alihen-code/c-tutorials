@@ -1,12 +1,47 @@
 #include <iostream>
+
 using namespace std;
-int bor =27;
-// global variables are available to all functions but are not a 
-//good choice as they keep memory all the way till the end of the programe
-// but to use global variables over local variables you must use unary scope resolution operator(::)
-int main(){
-	
-	int bor=23;
-	cout<<::bor<<endl;
-	return 0;
+
+struct node
+{
+    int data;
+    node *next;
+};
+
+class linked_list
+{
+private:
+    node *head,*tail;
+public:
+    linked_list()
+    {
+        head = NULL;
+        tail = NULL;
+    }
+
+    void add_node(int n)
+    {
+        node *tmp = new node;
+        tmp->data = n;
+        tmp->next = NULL;
+
+        if(head == NULL)
+        {
+            head = tmp;
+            tail = tmp;
+        }
+        else
+        {
+            tail->next = tmp;
+            tail = tail->next;
+        }
+    }
+};
+
+int main()
+{
+    linked_list a;
+    a.add_node(1);
+    a.add_node(2);
+    return 0;
 }
